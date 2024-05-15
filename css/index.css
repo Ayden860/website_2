@@ -1,12 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 *{
     box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Nunito", sans-serif;
+    position: relative;
+    background-color: #b1ddf1;
+    /* scroll-behavior: smooth; */
+}
+
+/* To get the nav on the top */
+.nav {
+    position: fixed;
+    /* background-color: teal; */
+    /*to bottom right*/
+    /* background-image: linear-gradient( #47FEFE, #1EB7E4, #0F6298); */
+    background: transparent;
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+    width: 100vw;
+    height: 10svh;
+    z-index: 10;
+    transition: all 0.3s ease-in-out;
+}
+
+.active {
+    position: fixed;
+    background-color: teal;
+    margin: 0;
+    width: 100vw;
+    height: 8svh;
+    z-index: 10;
+    transition: all 0.3s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0.2rem;
+}
+
+/* To get the text in nav center and all other stuff */
+.line {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    height: 100%;
 }
 
 .container {
     position: relative;
     min-height: 100vh;
 }
+
+.drop-down {
+    max-height: 0;
+    width: 80svw;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.drop-down a li,  .drop-down a{
+    display: flex;
+    align-items: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+
+.drop-down-open {
+    max-height: 300px;
+    width: 80svw;
+    background-color: #0F6298;
+    transition: all 0.5s ease;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.limit {
+    display: flex;
+    padding-top: 1%;
+    width: 85svw;
+    background-color: #b1ddf1;
+    /* justify-content: center; */
+    margin: auto;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+.clickable {
+    background-color: teal;
+    border-radius: 20px;
+    /* border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px; */
+    display: flex;
+    width: 80svw;
+    height: 5rem;
+    color: white;
+    transition: all 0.5s ease;
+    justify-content: space-between;
+}
+
+/* Do this in java script (better transiton*/
+.clickable-hover{
+    height: 5.5rem;
+    transition: all 0.3s ease;
+}
+
+/* Also do this in Java Script */
+.bigArrow {
+    scale: 1.5;
+}
+
+.clickable-open{
+    background-color: teal;
+    border-radius: 20px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    display: flex;
+    width: 80svw;
+    height: 5rem;
+    color: white;
+    transition: all 0.5s ease;
+    justify-content: space-between;
+}
+
+.clickable>h2 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 4svw;
+    cursor: default;
+}
+
+#arrow-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    margin-right: 1%;
+    /* width: 56svw; */
+    width: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.line a{
+    margin-right: 50px;
+}
+
+a {
+    font-size: 1.1rem;
+    font-family: inherit;
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    align-self: center;
+    transition: ease-out 400ms;
+}
+
+a:hover {
+    transition: ease-in-out 0.1s;
+    opacity: 0.7;
+    color: #04d9ff;
+    font-weight: 700;
+    font-size: x-large;
+    /* background-color: black; */
+}
+
+a:active {
+    color: black;
+    /* opacity: 0.4; */
+    background-color: white;
+}
+
 
 footer {
     position: absolute;
@@ -17,4 +189,14 @@ footer {
     text-align: center;
     color: white;
     padding-bottom: 2em;
+}
+
+.spacer {
+    width: 100%;
+    height: 100px;
+}
+
+.spacer-2 {
+    width: 100%;
+    height: 50px;
 }
