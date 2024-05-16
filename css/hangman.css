@@ -130,7 +130,7 @@ h1{
     /* Top: left right, bot: left right */
     border-radius:10px 10px 0 0;
     position:absolute;
-    bottom:-50px;
+    bottom:-170px;
     transition:transform 0.3s ease-in-out;
 }
 
