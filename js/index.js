@@ -2,7 +2,7 @@ trigger = document.getElementById('arrow-2')
 show1 = document.getElementById("drop-down-1")
 web = document.getElementById('whole-web')
 project = document.getElementById('web')
-if (document.URL.includes("index")) {
+if (document.URL.includes("website_2")) {
     // toggle web drop down
     project.addEventListener('mouseover', () => {
         trigger.classList.add('bigArrow')
