@@ -14,95 +14,99 @@ let selected_insect = {}
 var stopGame = false
 
 // console.log(start_btn)
-start_btn.addEventListener('click', () => {
-    screens[0].classList.add('up')
-})
-
-choose_insect_btns.forEach(btn => {
-    btn.addEventListener('click', () =>{
-        const img = btn.querySelector('img')
-        const alt = img.getAttribute('alt')
-        const src = img.getAttribute('src')
-        screens[1].classList.add('up')
-        selected_insect = {src, alt}
-        setTimeout(createInsect, 1000)
-        // get rid of ()
-        startGame()
+if (stopGame == false) {
+    start_btn.addEventListener('click', () => {
+        screens[0].classList.add('up')
     })
-})
 
-function startGame(){
-    setInterval(increaseTime, 1000)
-}
+    choose_insect_btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const img = btn.querySelector('img')
+            const alt = img.getAttribute('alt')
+            const src = img.getAttribute('src')
+            screens[1].classList.add('up')
+            selected_insect = { src, alt }
+            setTimeout(createInsect, 1000)
+            // get rid of ()
+            if(stopGame == false){
+                startGame()
+            }
+        })
+    })
 
-function increaseTime(){
-    // used to be let
-    var m = Math.floor(seconds / 60)
-    let s = seconds % 60
-    if (m < 10){
-        m = `0${m}`
+    function startGame() {
+        setInterval(increaseTime, 1000)
     }
-    if (s < 10){
-        s = `0${s}`
-    }
-    timeEl.innerHTML = `Time: ${m}:${s}`
-    if(stopGame == false){
-        seconds++
-        j++
-    }
-}
 
-function createInsect(){
-    const insect = document.createElement('div')
-    insect.classList.add('insect')
-    const {x, y} = getRandomLocation()
-    insect.style.top = `${y}px`
-    insect.style.left = `${x}px`
-    insect.innerHTML = `<img src="${selected_insect.src}" alt="${selected_insect.alt}" style = "transform: rotate(${Math.random() * 360}deg)"/>`
-    game_container.appendChild(insect)
-    // used to be inspect
-    insect.addEventListener('click', catchInsect)
-    // console.log("HELLO")
-}
+    function increaseTime() {
+        // used to be let
+        var m = Math.floor(seconds / 60)
+        let s = seconds % 60
+        if (m < 10) {
+            m = `0${m}`
+        }
+        if (s < 10) {
+            s = `0${s}`
+        }
+        timeEl.innerHTML = `Time: ${m}:${s}`
+        if (stopGame == false) {
+            seconds++
+            j++
+        }
+    }
 
-function catchInsect(){
-    if(stopGame == false){
-        increaseScore()
-        this.classList.add('caught')
-        setTimeout(() => this.remove(), 2000)
-        console.log("CLICK")
-        addInsects()   
+    function createInsect() {
+        const insect = document.createElement('div')
+        insect.classList.add('insect')
+        const { x, y } = getRandomLocation()
+        insect.style.top = `${y}px`
+        insect.style.left = `${x}px`
+        insect.innerHTML = `<img src="${selected_insect.src}" alt="${selected_insect.alt}" style = "transform: rotate(${Math.random() * 360}deg)"/>`
+        game_container.appendChild(insect)
+        // used to be inspect
+        insect.addEventListener('click', catchInsect)
+        // console.log("HELLO")
     }
-}
 
-function addInsects(){
-    if(stopGame == false){
-        setTimeout(createInsect, 1000)
-        setTimeout(createInsect, 1500)
+    function catchInsect() {
+        if (stopGame == false) {
+            increaseScore()
+            this.classList.add('caught')
+            setTimeout(() => this.remove(), 2000)
+            console.log("CLICK")
+            addInsects()
+        }
     }
-}
 
-function increaseScore(){
-    score++
-    console.log(j)
-    if (score > 19){
-        message.classList.add('visible')
+    function addInsects() {
+        if (stopGame == false) {
+            setTimeout(createInsect, 1000)
+            setTimeout(createInsect, 1500)
+        }
     }
-    if(score > 30) {
-        message.classList.remove('visible')
-    }
-    // m does not work
-    if (score > 60 && j < 60){
-        message_2.classList.add('visible')
-        stopGame = true
-    }
-    scoreEl.innerHTML = `Score: ${score}`
-}
 
-function getRandomLocation(){
-    const width = window.innerWidth
-    const height = window.innerHeight
-    const x = Math.random() * (width - 200) + 100
-    const y = Math.random() * (height - 200) + 100
-    return {x,y}
+    function increaseScore() {
+        score++
+        console.log(j)
+        if (score > 19) {
+            message.classList.add('visible')
+        }
+        if (score > 30) {
+            message.classList.remove('visible')
+        }
+        // m does not work
+        if (score > 60 && j < 60) {
+            message_2.classList.add('visible')
+            stopGame = true
+        }
+        scoreEl.innerHTML = `Score: ${score}`
+    }
+
+    function getRandomLocation() {
+        const width = window.innerWidth
+        const height = window.innerHeight
+        const x = Math.random() * (width - 200) + 100
+        const y = Math.random() * (height - 200) + 100
+        return { x, y }
+    }
 }
